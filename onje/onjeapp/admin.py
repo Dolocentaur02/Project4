@@ -2,6 +2,6 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import signIn
+from .models import customer
 
-admin.site.register([signIn])
+admin.site.register([customer])

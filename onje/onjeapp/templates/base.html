@@ -2,22 +2,44 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <title> Hogwarts! </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title> ONJE </title>
 </head>
-<body>
-  <nav>
-    <h1>Welcome to Hogwarts!</h1>
-    <h2>
-      <a href="/houses"> View Houses</a> | <a href="/students"> View Students </a> | <a href="/students/new"> Enroll </a></h2>
-  </nav>
 
+<body>
+  <header>
+  <nav>
+    <h1><a href="#"><i style="font-size:24px" class="fa fa-fw fa-Onje"></i> Ónjé </a></h1>
+    <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+    <a href="#"><i class="fa fa-fw fa-search"></i> Search</a>
+    <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+    <a href="#"><i class="fa fa-fw fa-user"></i> Login</a>
+    <a href="#"><i style="font-size:24px" class="fa">&#xf07a;</i> Cart</a>
+    <!-- <h2>
+      <a href="/customer/"> Customer </a> | <a href=" "> Products </a> | <a href="/customer/new"> Profile </a>| <a
+        href="/customer/new"> Signup </a>| <a href="/customer/new"> Signup </a>
+      </h2> -->
+  </nav>
+</header>
+
+
+  <footer>
+    <div id="social-media">
+      <a href="#" class="fa fa-facebook"></a>
+      <a href="#" class="fa fa-twitter"></a>
+      <a href="#" class="fa fa-youtube"></a>
+      <a href="#" class="fa fa-instagram"></a>
+      <a href="#" class="fa fa-rss"></a> </div>
+  </footer>
 
   {% block content %}
   {% endblock %}
 </body>
+
 </html>

@@ -2,47 +2,47 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render, redirect
-from .models import SignIn
-# from .forms import HouseForm, StudentForm
+from .models import customer
+from .forms import CustomerForm
 
 
-def signIn_list(request):
-    signIns = signIn.objects.all()
-    return render(request, 'signIn_list.html', {'signIns': signIns})
+def customer_list(request):
+    customers = customer.objects.all()
+    return render(request, 'customer_list.html', {'customers': customers})
 
 
-def signIn_detail(request, id):
-    signIn = signIn.objects.get(id=id)
-    return render(request, 'signIn_detail.html', {'signIn': signIn})
+def customer_detail(request, id):
+    customer = customer.objects.get(id=id)
+    return render(request, 'customer_detail.html', {'customer': customer})
 
 
-def signIn_create(response):
+def customer_create(response):
     if request.method == 'POST':
-        form = signInForm(request.POST)
+        form = customerForm(request.POST)
         if form.is_valid:
-            signIn = form.save()
-            return redirect('signIn_detail', id=signIn.id)
+            customer = form.save()
+            return redirect('customer_detail', id=customer.id)  
     else:
-        form = signInForm()
-        return render(request, 'signIn_form.html', {'form': form})
+        form = customerForm()
+        return render(request, 'customer_form.html', {'form': form})
 
 
-def signIn_update(request, id):
-    signIn = signIn.objects.get(id=id)
+def customer_update(request, id):
+    customer = customer.objects.get(id=id)
     if request.method == 'POST':
-        form = signInForm(request.POST, instance=signIn)
+        form = customerForm(request.POST, instance=customer)
         if form.is_valid:
-            signIn = form.save()
-            return redirect('signIn_detail', id=signIn.id)
+            customer = form.save()
+            return redirect('customer_detail', id=customer.id)
     else:
-        form = signInForm(instance=signIn)
-        return render(request, 'signIn_form.html', {'form': form})
+        form = customerForm(instance=customer)
+        return render(request, 'customer_form.html', {'form': form})
 
 
-def signIn_delete(request, id):
+def customer_delete(request, id):
     if request.method == 'POST':
-        signIn.objects.get(id=id).delete()
-    return redirect('signIn_list')
+        customer.objects.get(id=id).delete()
+    return redirect('customer_list')
 
 
 # def student_list(request):
