@@ -58,18 +58,17 @@ def contact_update(request, id):
 
 def contact_delete(request, id):
     if request.method == 'POST':
-        contact.objects.get(id=id).delete()
+        Contact.objects.get(id=id).delete()
     return redirect('contact_list')
 
-
 def Product_list(request):
-    Products = Product.objects.all()
-    return render(request, 'Product_list.html', {'Products': Products})
+    products = Product.objects.all()
+    return render(request, 'product_list.html')
 
 
 def Product_detail(request, id):
-    Product = product.objects.get(id=id)
-    return render(request, 'Product_detail.html', {'Product': Product})
+    Product = Product.objects.get(id=id)
+    return render(request, 'product_detail.html', {'product':product})
 
 
 def Product_create(request):
@@ -77,25 +76,25 @@ def Product_create(request):
         form = ProductForm(request.POST)
         if form.is_valid:
             Product = form.save()
-            return redirect('Product_detail', id=Product.id)
+            return redirect('product_detail', id=product.id)
     else:
         form = ProductForm()
-        return render(request, 'Product_form.html', {'form': form})
+        return render(request, 'product_form.html', {'form': form})
 
 
 def Product_update(request, id):
-    Product = Product.objects.get(id=id)
+    product = Product.objects.get(id=id)
     if request.method == 'POST':
         form = ProductForm(request.POST, instance=Product)
         if form.is_valid:
             Product = form.save()
-            return redirect('Product_detail', id=Product.id)
+            return redirect('product_detail', id=Product.id)
     else:
         form = ProductForm(instance=Product)
-        return render(request, 'Product_form.html', {'form': form})
+        return render(request, 'product_form.html', {'form': form})
 
 
 def Product_delete(request, id):
     if request.method == 'POST':
-        product.objects.get(id=id).delete()
-    return redirect('Product_list')
+        Product.objects.get(id=id).delete()
+    return redirect('product_list')

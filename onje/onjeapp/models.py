@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 
-class Contact (models.Model):
+class Contact(models.Model):
     name = models.CharField(default=" ", max_length=500,)
     address1 = models.CharField(default="Address line1", max_length=500)
     address2 = models.CharField(default="Address line2", max_length=500)
@@ -14,7 +14,7 @@ class Contact (models.Model):
         return self.name
 
 
-class Product (models.Model):
+class Product(models.Model):
     title = models.CharField(default=" ", max_length=120)
     description = models.TextField()
     price = models.DecimalField(decimal_places=2, max_digits=20, default=15.99)
