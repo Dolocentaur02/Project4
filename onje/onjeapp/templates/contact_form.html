@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2> contacts </h2>
+  {% for contact in contacts %}
+    <div class="contact">
+      <h2><a href="/contacts/{{contact.id}}">{{contact.name}}</a></h2>
+      <img src="{{contact.image_url}}" alt="Picture of {{contact.name}}"/>
+    </div>
+    <form action="/contacts/{{contact.id}}/delete" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Delete {{contact.name}}">
+    </form>
+  {% endfor %}
+{% endblock %}

@@ -1,16 +1,25 @@
 from django import forms
-from .models import customer
+from .models import Contact, Product
 
 
-class CustomerForm(forms.ModelForm):
+class ContactForm(forms.ModelForm):
+    from_email = forms.EmailField(required=True)
+    subject = forms.CharField(required=True)
+    message = forms.CharField(widget=forms.Textarea, required=True)
 
     class Meta:
-        model = customer
-        fields = ('id', 'name', 'address1', 'address2', 'zip_code', 'city',)
+        model = Contact
+        fields = ('name',)
 
 
-# class StudentForm(forms.ModelForm):
+class ProductForm(forms.ModelForm):
 
-#     class Meta:
-#         model = Student
-#         fields = ('name', 'image_url', 'house')
+    class Meta:
+        model = Product
+        fields = ('title', 'image_url',)
+
+
+class ContactUsForm(forms.Form):
+    from_email = forms.EmailField(required=True)
+    subject = forms.CharField(required=True)
+    message = forms.CharField(widget=forms.Textarea, required=True)

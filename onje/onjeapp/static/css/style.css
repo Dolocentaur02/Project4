@@ -1,55 +1,57 @@
-/* @import url(https://fonts.googleapis.com/css?family=Irish+Grover); */
 
 body {
-  /* font-family: "Irish Grover", Papyrus, fantasy, cursive;
-  text-align: center; */
   color: rgb(178, 189, 23);
-}
-
+} 
 
 nav, p {
-  /* padding: 15px;
+  padding: 15px;
   height: 80px;
-  border: solid pink 2px ;
-  width:100%; */
+  width:100%;
   text-decoration: none;
+  /* background-color: indianred; */
   /* display: inline-block; */
   /* background-color: rgb(178, 189, 23); */
 }
 
 header {
-  background-color: white;
+  
   position: fixed;
   top: 5;
   left: 0;
   right: 0;
-  height: 80px;
+  height: 90px;
   display: flex;
   text-decoration: none;
+  align-items: center;
+  background: #43D1AF;
 }
-
-
-
 
 
 header * { 
   display: inline;  
 }
 
-.fa-Onje{
-  position:absolute;
+.logo{
+  position: absolute;
   top:90px;
   left:45px;
   width:20px;
-  height: 17px;
+  height: 80px;
   color: rgb(196, 98, 209);
+  font-family: 'Inconsolata', monospace;
 
 }
 
 form {
-  border-radius: 40px 0 40px 0;
-  width: 50%;
-  margin: 0 auto;
+  max-width: 450px;
+	padding: 30px;
+	margin: 50px auto;
+	box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+  max-width: 400px;
+	margin: 10px auto;
+	padding: 16px;
+  background: rgb(164, 230, 214);
 }
 
 h1 {
@@ -60,7 +62,7 @@ h2 {
   font-size: 22px;
 }
 
-.customer {
+.contact {
   display: inline-block;
   background-color: red;
   width: 350px;
@@ -71,11 +73,11 @@ h2 {
   border-radius: 10%;
 }
 
-.customer {
+.contact {
   display: inline-block;
 }
 
-.customer img {
+.contact img {
   display: block;
 }
 
@@ -93,7 +95,7 @@ footer {
   text-align: left;
   /* font-display: inline; */
   /* display: inline; */
-  /* background-color: rgb(185, 192, 178); */
+  background: rgb(164, 230, 214);
   text-decoration: none;
 }
 
@@ -128,4 +130,18 @@ footer {
 .fa-rss {
   background: #ff6600;
   color: white;
+}
+
+.fa-contactUs{
+  float: right;
+}
+.fa-contactUs, .form-action{
+	display: block;
+	margin-bottom: 10px;
+	min-height: 35px;
+}
+
+.fa-contactUs textarea{
+	width: 100%;
+	height: 100px;
 }

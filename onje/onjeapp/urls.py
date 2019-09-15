@@ -1,13 +1,20 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.customer_list),
-    path('customer/', views.customer_list, name = 'customer_list'),
-    path('customer/<int:id>', views.customer_detail, name = 'customer_detail'),
-    path('customer/new', views.customer_create, name = 'customer_create'),
-    path('customer/<int:id>/edit', views.customer_update, name = 'customer_update'),
-    path('customer/<int:id>/delete', views.customer_delete, name = 'customer_delete'),
+    path('', views.Product_list),
+    path('product/', views.Product_list, name='product_list'),
+    path('product/<int:id>', views.Product_detail, name='product_detail'),
+    path('product/new', views.Product_create, name='Product_create'),
+    path('product/<int:id>/edit', views.Product_update, name='Product_update'),
+    path('product/<int:id>/delete', views.Product_delete, name='Product_delete'),
+    path('contact/', views.contact_list, name='contact_list'),
+    path('contact/<int:id>', views.contact_detail, name='contact_detail'),
+    path('contact/new', views.contact_create, name='contact_create'),
+    path('contact/<int:id>/edit', views.contact_update, name='contact_update'),
+    path('contact/<int:id>/delete', views.contact_delete, name='contact_delete'),
+    path('email/', views.emailView, name='email'),
+    path('success/', views.successView, name='success')
     # path('students/', views.student_list, name = 'student_list'),
     # path('students/<int:id>', views.student_detail, name = 'student_detail'),
     # path('students/new', views.student_create, name = 'student_create'),

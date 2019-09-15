@@ -1,84 +1,101 @@
-from django.shortcuts import render
 
-# Create your views here.
 from django.shortcuts import render, redirect
-from .models import customer
-from .forms import CustomerForm
+from django.http import HttpResponse, HttpResponseRedirect
+from .models import Contact, Product
+from .forms import ContactForm, ProductForm, ContactUsForm
 
-
-def customer_list(request):
-    customers = customer.objects.all()
-    return render(request, 'customer_list.html', {'customers': customers})
-
-
-def customer_detail(request, id):
-    customer = customer.objects.get(id=id)
-    return render(request, 'customer_detail.html', {'customer': customer})
-
-
-def customer_create(response):
-    if request.method == 'POST':
-        form = customerForm(request.POST)
-        if form.is_valid:
-            customer = form.save()
-            return redirect('customer_detail', id=customer.id)  
+def emailView(request):
+    if request.method == 'GET':
+        form = ContactUsForm()
     else:
-        form = customerForm()
-        return render(request, 'customer_form.html', {'form': form})
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['from_email']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(subject, message, from_email, ['admin@example.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect('success')
+    return render(request, "email.html", {'form': form})
+
+def successView(request):
+    return HttpResponse('Success! Thank you for your message.')
+
+def contact_list(request):
+    contacts = Contact.objects.all()
+    return render(request, 'contact_list.html', {'contacts': contacts})
 
 
-def customer_update(request, id):
-    customer = customer.objects.get(id=id)
-    if request.method == 'POST':
-        form = customerForm(request.POST, instance=customer)
+def contact_detail(request, id):
+    contact = Contact.objects.get(id=id)
+    return render(request, 'contact_detail.html', {'contact': contact})
+
+
+def contact_create(response):
+    if response.method == 'POST':
+        form = ContactForm(response.POST)
         if form.is_valid:
-            customer = form.save()
-            return redirect('customer_detail', id=customer.id)
+            contact = form.save()
+            return redirect('contact_detail', id=contact.id)  
     else:
-        form = customerForm(instance=customer)
-        return render(request, 'customer_form.html', {'form': form})
+        form = ContactForm()
+        return render(response, 'contact_form.html', {'form': form})
 
 
-def customer_delete(request, id):
+def contact_update(request, id):
+    contact = Contact.objects.get(id=id)
     if request.method == 'POST':
-        customer.objects.get(id=id).delete()
-    return redirect('customer_list')
+        form = ContactForm(request.POST, instance=contact)
+        if form.is_valid:
+            contact = form.save()
+            return redirect('contact_detail', id=contact.id)
+    else:
+        form = ContactForm(instance=contact)
+        return render(request, 'contact_form.html', {'form': form})
 
 
-# def student_list(request):
-#     students = Student.objects.all()
-#     return render(request, 'student_list.html', {'students': students})
+def contact_delete(request, id):
+    if request.method == 'POST':
+        contact.objects.get(id=id).delete()
+    return redirect('contact_list')
 
 
-# def student_detail(request, id):
-#     student = Student.objects.get(id=id)
-#     return render(request, 'student_detail.html', {'student': student})
+def Product_list(request):
+    Products = Product.objects.all()
+    return render(request, 'Product_list.html', {'Products': Products})
 
 
-# def student_create(request):
-#     if request.method == 'POST':
-#         form = StudentForm(request.POST)
-#         if form.is_valid:
-#             student = form.save()
-#             return redirect('student_detail', id=student.id)
-#     else:
-#         form = StudentForm()
-#         return render(request, 'student_form.html', {'form': form})
+def Product_detail(request, id):
+    Product = product.objects.get(id=id)
+    return render(request, 'Product_detail.html', {'Product': Product})
 
 
-# def student_update(request, id):
-#     student = Student.objects.get(id=id)
-#     if request.method == 'POST':
-#         form = StudentForm(request.POST, instance=student)
-#         if form.is_valid:
-#             student = form.save()
-#             return redirect('student_detail', id=student.id)
-#     else:
-#         form = StudentForm(instance=student)
-#         return render(request, 'student_form.html', {'form': form})
+def Product_create(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid:
+            Product = form.save()
+            return redirect('Product_detail', id=Product.id)
+    else:
+        form = ProductForm()
+        return render(request, 'Product_form.html', {'form': form})
 
 
-# def student_delete(request, id):
-#     if request.method == 'POST':
-#         Student.objects.get(id=id).delete()
-#     return redirect('student_list')
+def Product_update(request, id):
+    Product = Product.objects.get(id=id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=Product)
+        if form.is_valid:
+            Product = form.save()
+            return redirect('Product_detail', id=Product.id)
+    else:
+        form = ProductForm(instance=Product)
+        return render(request, 'Product_form.html', {'form': form})
+
+
+def Product_delete(request, id):
+    if request.method == 'POST':
+        product.objects.get(id=id).delete()
+    return redirect('Product_list')
