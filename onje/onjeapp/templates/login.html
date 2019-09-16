@@ -1,10 +1,21 @@
 {% extends "base.html" %}
 
-{% block content %}
-<h1>Login</h1>
-<form method='POST'> {% csrf_token %}
-    {{ form }}
-    <button type='submit' class='btn btn-default'>Submit</button>
+ {% block content %}
+
+  {% if form.errors %}
+   <p>Your username and password didn't match. Please try again.</p>
+  {% endif %}
+
+  {% if next %}
+   <p>Please login to see this page.</p>
+  {% endif %}
+
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{form.as_p}}
+
+     <input type="submit" value="login" />
+    <input type="hidden" name="next" value="{{ next }}" />
 </form>
 
 {% endblock %}

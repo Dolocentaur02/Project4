@@ -1,12 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
+*:before, *:after {
+  box-sizing: border-box;
+}
+
 body {
   color: black;
+  height: 100%;
+  position: relative;
+  border-color: black;
+  border-width: .40em;
+  border-style: dashed;
+  background-color: rgba(241, 69, 7, 0.8);
 }
 
 nav {
   padding: 15px;
   height: 80px;
   width: 90%;
-
 }
 
 header {
@@ -14,7 +27,7 @@ header {
   left: 0;
   right: 0;
   height: 90px;
-  display: flex-end; 
+  display: flex-end;
   align-items: center;
   /* background: rgb(235, 241, 240, 0.7); */
   align-content: space-between;
@@ -23,12 +36,21 @@ header {
 header * {
   display: inline-block;
 }
+span{
+  line-height: 2em;
 
+}
 h1 {
-  font-family: 'Open Sans Condensed', sans-serif;
-  border: solid black 2px;
+  font-family: 'Bungee Inline';
+  border: solid rgb(31, 1, 1) 2px;
   background: red;
+  position: relative;
+}
+
+.logo {
   color: white;
+  size: 5em;
+ 
 }
 
 a {
@@ -37,66 +59,48 @@ a {
 }
 
 p {
-  float: right;
+  text-align: justify;
+  font-size: 10px;
 }
 
 .products {
-  margin: 150px;
-}
-
-h2 {
-  color: blue;
+  display: flex;
 }
 
 form {
   max-width: 450px;
+  max-height: 450px;
   padding: 30px;
   margin: 50px auto;
   box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
   border-radius: 10px;
-  max-width: 400px;
-  margin: 10px auto;
-  padding: 16px;
-  background: rgb(235, 241, 240);
+  border: 3px solid black;
+  background: red;
 }
-
-/* h1 {
-  font-size: 36px;
-} */
 
 h2 {
-  font-size: 22px;
-  display: flex;
-  margin: 20px;
+  color: black;
+  font-size: 12px;
+  display: block;
+  margin: 0 auto;
 }
 
-.contact {
-  display: inline-block;
-  background-color: red;
-  width: 350px;
-  text-align: center;
-  margin: 10px;
-  padding: 10px;
-  border: 10px solid black;
-  border-radius: 10%;
+img {
+  max-height: 3rem;
+  transition: opacity 1s ease-in-out;
 }
 
-a img {
-  border-radius: 40%;
-  height: 300px;
-}
 
 footer {
-  padding: 2px;
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   text-align: left;
-  font-display: inline;
   display: inline;
-  background: rgb(235, 241, 240);
+  background: red;
   text-decoration: none;
+  border: solid black 2px;
 }
 
 .social-links {
@@ -106,8 +110,9 @@ footer {
 }
 
 .fa:hover {
-  opacity: 0.7;
+  opacity: 0.9;
   text-decoration: none;
+  color: white;
 }
 
 .fa-facebook {
@@ -139,7 +144,7 @@ footer {
   float: right;
 }
 
-.fa-contactUs, .form-action {
+.form-action {
   display: block;
   margin-bottom: 10px;
   min-height: 35px;
@@ -147,5 +152,5 @@ footer {
 }
 
 .fa-contactUs:hover {
-  color: rgb(158, 4, 4);
+  color: white;
 }

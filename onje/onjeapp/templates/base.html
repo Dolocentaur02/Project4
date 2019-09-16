@@ -14,18 +14,27 @@
 
 <body>
   <header>
-    <nav> 
-      <h1><a href='/'> <i class="Onje"></i>Ó|n|j|é </a></h1>
-      <a class="" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-      <a href="#"><i class="fa fa-fw fa-search"></i> Search</a>
-      <a href="/contacts/int:id"><i class="fa fa-fw fa-envelope"></i> Contact</a>
-      <a href="#"><i class="fa fa-fw fa-user"></i> Login</a>
+    <nav>
+      <h1>
+        <a class="logo" href='/'><i class="Onje"></i>Ó<span style = "color:black;">|</span>n<span style = "color:black;">|</span>j<span style = "color:black;">|</span>é </a>
+      </h1>
+      <a class="" href="/product/{{product.title}}"><i class="fa fa-fw fa-home"></i> Home</a>
+      <a href="/search/{{prodcut.title}}"><i class="fa fa-fw fa-search"></i> Search</a>
+      <a href="/contact/{{contact.name}}"><i class="fa fa-fw fa-envelope"></i> Contact</a>
       <a href="#"><i style="font-size:24px" class="fa">&#xf07a;</i> Cart</a>
+      <div class="user-info">
+        {% if user.is_authenticated %} Welcome, {{ user.username }}
+        <a href="{% url 'logout' %}">Log Out</a>
+        {% else %}
+        <a href="{% url 'login' %}"><i class="fa fa-fw fa-user"></i></i>Login </a>
+        + <a href="{% url 'signup' %}"><i class="fa fa-fw fa-user"></i>Signup </a>
+        {% endif %}
+      </div>
     </nav>
   </header>
   <main>
-    <div class=product>
-      <h2><a href="/product/"><i class="fa fa-fw fa-product"></i> Products</a> </h2>
+    <div class=products>
+      <h2><a href='/product/{{product.title}}'><i class="fa fa-fw fa-product"></i> Products</a> </h2>
     </div>
 
   </main>

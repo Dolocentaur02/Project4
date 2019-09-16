@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% if submitbutton == 'Search' and request.GET.q != '' %}
+{% if results %}
+<h1>Results for <b>{{ request.GET.q }}</b></h1>
+<br /><br />
+
+{% for product in product %}
+
+{{product.title}}
+<br />
+{{product.description}}
+<br />
+<form method='GET'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class='form-actions'>
+          <input class="form-control" type="text" placeholder="Search" name='q' aria-label="Search" value='{{ request.GET.q }}'>
+              <button class="btn btn-outline-success" type="submit">Search</button>
+
+          </div>
+      </form>
+
+{% endfor %}
+{% else %}
+No search results for this query
+{% endif %}
+{% endif %}

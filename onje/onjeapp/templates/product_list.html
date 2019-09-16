@@ -2,14 +2,16 @@
 
 {% block content %}
 <h1> products </h1>
-{% for product in products %}
+
 <div class="product">
-  <h2><a href="/products/{{product.id}}">{{product.name}}</a></h2>
-  <img src="{{product.image_url}}" alt="Picture of {{product.name}}" />
+  {% for product in product %}
+  <h2>
+    <ul> <a href="/product/{{product.title}}">{{product.title}}</a>
+      <p>{{product.price}}</p>
+      <a href="/product/{{product.description}}"><img src="{{product.image_url}}" alt="Picture of {{product.title}}"/></a>
+    </ul>
+  </h2>
+  {% endfor %}
 </div>
-<form action="/products/{{product.id}}/delete" method="POST">
-  {% csrf_token %}
-  <input type="submit" value="Delete {{product.name}}">
-</form>
-{% endfor %}
+
 {% endblock %}
