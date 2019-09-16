@@ -1,10 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>Results for <b>{{ request.GET.q }}</b></h3>
-<br /><br />
 
-<form method='GET'>
+<form method='GET' action='{{ request.GET.q } }' >
         {% csrf_token %}
         {{ form.as_p }}
         <div class="form-actions">

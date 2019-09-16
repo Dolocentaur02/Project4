@@ -128,7 +128,7 @@ def pagelogin(request):
     else:
         context = {'form': form}
         return render(request, 'siteusers/login.html', context)
-
+@login_required
 def searchproducts(request):
     if request.method == 'GET':
         query= request.GET.get('q')
@@ -136,7 +136,7 @@ def searchproducts(request):
         submitbutton= request.GET.get('submit')
 
         if query is not None:
-            lookups= Product(title__icontains=query) | Product(content__icontains=query)
+            lookups= Product(title=query) | Product(description=query)
 
             products= Product.objects.filter(lookups).distinct()
 
